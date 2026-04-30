@@ -1,3 +1,4 @@
+import { inject } from '@vercel/analytics';
 import { Terminal } from './terminal.js';
 import { ASCII } from './data.js';
 
@@ -8,6 +9,9 @@ const pwHint     = document.getElementById('pw-hint') as HTMLElement;
 const asciiBanner = document.getElementById('ascii-banner') as HTMLPreElement;
 
 asciiBanner.textContent = ASCII;
+
+// Initialize Vercel Web Analytics
+inject();
 
 let terminal: Terminal | null = null;
 
