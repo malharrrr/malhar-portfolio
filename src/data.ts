@@ -110,3 +110,5 @@ export const ACHIEVEMENTS: string[] = [
   'Published at ICAIC 2025 (MIT Jaipur) — causal reinforcement learning for algorithmic trading (TCARP)',
   '20+ final shortlists across national hackathons — top 5% of 500+ participants',
 ];
+
+export const RESUME_URL = '/resume.pdf';

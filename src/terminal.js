@@ -1,4 +1,4 @@
-import { ASCII, SOCIAL, ABOUT, PROJECTS, SKILLS, EXPERIENCE, ACHIEVEMENTS } from './data.js';
+import { ASCII, SOCIAL, ABOUT, PROJECTS, SKILLS, EXPERIENCE, ACHIEVEMENTS, RESUME_URL } from './data.js';
 function span(text, cls) {
     return `<span class="${cls}">${text}</span>`;
 }
@@ -103,7 +103,7 @@ export class Terminal {
             ['experience', 'work history'],
             ['achievements', 'hackathons and publications'],
             ['socials', 'find me online'],
-            ['resume', 'open GitHub'],
+            ['resume', 'open resume.pdf'],
             ['clear', 'clear the terminal'],
             ['whoami', 'quick intro'],
             ['banner', 'show banner again'],
@@ -165,7 +165,7 @@ export class Terminal {
         this.print(`\n${span('malhar bonde', 'c-cyan')} — ai engineer, builder, published researcher, 3x hackathon winner\n`);
     }
     openResume() {
-        this.print(`\n${span('opening github...', 'c-green')}\n`);
-        setTimeout(() => window.open('https://github.com/malharrrr', '_blank'), 400);
+        this.print(`\n${span('opening resume...', 'c-green')}\n`);
+        setTimeout(() => window.open(RESUME_URL, '_blank'), 400);
     }
 }

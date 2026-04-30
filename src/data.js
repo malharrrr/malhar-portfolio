@@ -70,7 +70,7 @@ export const EXPERIENCE = [
     {
         role: 'Trainee Software Engineer',
         company: 'Neebal Technologies',
-        period: 'Jun 2024 – Dec 2024 | Mumbai',
+        period: 'Jun 2025 – Dec 2025 | Mumbai',
         bullets: [
             'Architected stateful multi-agent system using LangGraph — reduced manual processing time by 40%',
             'Built automated visa appointment monitoring bot — reduced check-frequency by 90%',
@@ -84,3 +84,4 @@ export const ACHIEVEMENTS = [
     'Published at ICAIC 2025 (MIT Jaipur) — causal reinforcement learning for algorithmic trading (TCARP)',
     '20+ final shortlists across national hackathons — top 5% of 500+ participants',
 ];
+export const RESUME_URL = '/resume.pdf';
