@@ -2,10 +2,13 @@
     "name": "malhar-terminal-portfolio",
     "version": "1.0.0",
     "scripts": {
-      "build": "tsc",
-      "serve": "npx serve ."
+        "build": "tsc",
+        "serve": "npx serve ."
     },
     "devDependencies": {
-      "typescript": "^5.0.0"
+        "typescript": "^5.0.0"
+    },
+    "dependencies": {
+        "@vercel/analytics": "^2.0.1"
     }
-  }
+}

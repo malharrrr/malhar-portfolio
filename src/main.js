@@ -1,3 +1,4 @@
+import { inject } from '@vercel/analytics';
 import { Terminal } from './terminal.js';
 import { ASCII } from './data.js';
 const pwScreen = document.getElementById('password-screen');
@@ -6,6 +7,8 @@ const pwInput = document.getElementById('pw-input');
 const pwHint = document.getElementById('pw-hint');
 const asciiBanner = document.getElementById('ascii-banner');
 asciiBanner.textContent = ASCII;
+// Initialize Vercel Web Analytics
+inject();
 let terminal = null;
 pwInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
