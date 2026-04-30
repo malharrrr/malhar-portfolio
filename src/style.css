@@ -58,6 +58,25 @@ html, body {
 .pw-hint { color: var(--dim); font-size: 11px; }
 .pw-hint.error { color: var(--red); }
 
+.bypass-btn {
+  margin-top: 15px;
+  background: transparent;
+  border: 1px solid var(--dim);
+  color: var(--dim);
+  font-family: 'Courier New', Courier, monospace;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 11px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+  outline: none;
+}
+
+.bypass-btn:hover,
+.bypass-btn:focus {
+  color: var(--green);
+  border-color: var(--green);
+}
+
 #terminal-screen {
   display: none;
   flex-direction: column;
