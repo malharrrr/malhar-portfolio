@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Malhar Bonde | Portfolio</title>
+  <link rel="stylesheet" href="src/style.css" />
+</head>
+<body>
+  <div id="password-screen">
+    <pre id="ascii-banner" class="ascii-art"></pre>
+    <div class="pw-label">guest@malhar.dev:~$ enter password:</div>
+    <input id="pw-input" type="password" autocomplete="off" spellcheck="false" />
+    <div class="pw-hint" id="pw-hint">hint: what malhar loves to do</div>
+  </div>
+  <div id="terminal-screen">
+    <div id="output"></div>
+    <div class="input-row">
+      <span class="prompt">guest@malhar.dev:~$&nbsp;</span>
+      <input id="cmd-input" type="text" autocomplete="off" spellcheck="false" autofocus />
+    </div>
+  </div>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

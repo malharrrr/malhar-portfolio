@@ -1,0 +1,11 @@
+{
+    "name": "malhar-terminal-portfolio",
+    "version": "1.0.0",
+    "scripts": {
+      "build": "tsc",
+      "serve": "npx serve ."
+    },
+    "devDependencies": {
+      "typescript": "^5.0.0"
+    }
+  }
