@@ -1,3 +1,4 @@
+import { inject } from '@vercel/analytics';
 import { Terminal } from './terminal';
 import { ASCII } from './data';
 
@@ -34,3 +35,6 @@ pwInput.addEventListener('keydown', (e: KeyboardEvent) => {
 });
 
 pwInput.focus();
+
+// Initialize Vercel Web Analytics
+inject();
