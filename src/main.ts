@@ -10,15 +10,17 @@ const guestBtn = document.getElementById('guest-bypass') as HTMLButtonElement;
 
 asciiBanner.textContent = ASCII; 
 
-let terminal: any = null; 
+let terminal: Terminal | null = null; 
 
 const unlockTerminal = () => {
     pwScreen.classList.add('hidden');
     termScreen.classList.add('visible');
+    
     if (!terminal) {
-        const output = document.getElementById('output') as HTMLElement;
-        const input = document.getElementById('cmd-input') as HTMLInputElement;
-        terminal = new Terminal(output, input);
+        const outputEl = document.getElementById('output') as HTMLElement;
+        const inputEl = document.getElementById('cmd-input') as HTMLInputElement;
+        
+        terminal = new Terminal(outputEl, inputEl);
     }
 };
 
@@ -38,5 +40,6 @@ pwInput.addEventListener('keydown', (e: KeyboardEvent) => {
         }
     }
 });
+
 guestBtn.addEventListener('click', unlockTerminal);
 pwInput.focus();

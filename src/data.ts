@@ -48,13 +48,13 @@ export const PROJECTS: Project[] = [
     name: 'TCARP',
     tech: 'Python, TensorFlow, PyTorch, Reinforcement Learning',
     description: 'Published at ICAIC 2025 (MIT Jaipur). Causal RL trading system using Granger Causality, DAGs, GNNs and PPO. 2.45 Sharpe ratio — 40% above all baselines.',
-    link: 'https://github.com/malharrrr',
+    link: 'https://github.com/malharrrr/tcarp_new',
   },
   {
     name: 'De-Samaadhan',
     tech: 'Node.js, Next.js, Solidity, Blockchain',
     description: 'Won Best Blockchain Project at CSI-SPIT 2024. Decentralized complaint management with Aadhaar Anon integration for anonymous trustless authentication.',
-    link: 'https://github.com/malharrrr',
+    link: 'https://github.com/malharrrr/De-Samaadhan',
   },
   {
     name: 'Mirage.AI',
@@ -66,7 +66,7 @@ export const PROJECTS: Project[] = [
     name: 'Legual',
     tech: 'Django, MBart, Google Flan T5, LangChain, OpenAI',
     description: 'Legal document processing platform with AI-powered translation, summarization, and Chat with PDF using instructor embeddings and vector search.',
-    link: 'https://github.com/malharrrr',
+    link: 'https://github.com/malharrrr/Legual-datahack',
   },
 ];
 
@@ -78,7 +78,7 @@ export interface SkillCategory {
 export const SKILLS: SkillCategory[] = [
   { category: 'Languages',  items: 'Python, JavaScript, TypeScript, Java, C/C++, SQL, HTML/CSS, Solidity, Bash, PHP' },
   { category: 'Backend',    items: 'Django, Flask, FastAPI, Node.js, Express.js, RESTful APIs, WebSockets' },
-  { category: 'Frontend',   items: 'React.js, Next.js, Angular, Tailwind CSS, Responsive Web Design' },
+  { category: 'Frontend',   items: 'React.js, Next.js, Tailwind CSS, Responsive Web Design' },
   { category: 'AI/ML',      items: 'LLMs (Claude, OpenAI, Gemini), LangChain, LangGraph, RAG, Agentic AI, TensorFlow, PyTorch, MCP' },
   { category: 'Databases',  items: 'PostgreSQL, MongoDB, MySQL, SQLite, Firebase, Redis' },
   { category: 'DevOps',     items: 'Docker, Git/GitHub/GitLab, Linux, Postman, NPM' },
@@ -112,3 +112,75 @@ export const ACHIEVEMENTS: string[] = [
 ];
 
 export const RESUME_URL = '/resume.pdf';
+
+export interface PortfolioCommand {
+  description: string;
+  execute: () => string | string[];
+}
+
+export const portfolioData: Record<string, PortfolioCommand> = {
+  help: {
+    description: 'Show available commands',
+    execute: () => [
+      "Available commands:",
+      "help        - Show this help message",
+      "about       - View my bio and background",
+      "projects    - List featured projects",
+      "skills      - View my technical skills",
+      "experience  - View my work experience",
+      "achievements- View key achievements",
+      "social      - Show contact details",
+      "resume      - Display the resume URL",
+      "ascii       - Show the terminal banner art",
+      "clear       - Clear the terminal output",
+      "agent       - Run the hidden agent easter egg",
+      "analyze     - Run the hidden agent easter egg",
+    ],
+  },
+  about: {
+    description: 'Display the about section',
+    execute: () => ABOUT,
+  },
+  projects: {
+    description: 'Display featured projects',
+    execute: () => PROJECTS.flatMap(project => [
+      `Name:        ${project.name}`,
+      `Tech:        ${project.tech}`,
+      `Description: ${project.description}`,
+      `Link:        ${project.link}`,
+      '',
+    ]),
+  },
+  skills: {
+    description: 'Display skills by category',
+    execute: () => SKILLS.map(skill => `${skill.category}: ${skill.items}`),
+  },
+  experience: {
+    description: 'Display professional experience',
+    execute: () => EXPERIENCE.flatMap(item => [
+      `${item.role} @ ${item.company} (${item.period})`,
+      ...item.bullets.map(bullet => `  - ${bullet}`),
+      '',
+    ]),
+  },
+  achievements: {
+    description: 'Display achievements and awards',
+    execute: () => ACHIEVEMENTS,
+  },
+  social: {
+    description: 'Display social and contact links',
+    execute: () => [
+      `Email:    ${SOCIAL.email}`,
+      `GitHub:   https://github.com/${SOCIAL.github}`,
+      `LinkedIn: https://www.linkedin.com/in/${SOCIAL.linkedin}`,
+    ],
+  },
+  resume: {
+    description: 'Display the resume URL',
+    execute: () => `Resume: ${RESUME_URL}`,
+  },
+  ascii: {
+    description: 'Display the ASCII banner art',
+    execute: () => ASCII,
+  },
+};

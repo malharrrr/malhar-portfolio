@@ -9,6 +9,7 @@ export class Terminal {
   private input: HTMLInputElement;
   private history: string[] = [];
   private histIdx: number = -1;
+  private isProcessing: boolean = false; 
   private COMMANDS: Record<string, () => void>;
 
   constructor(outputEl: HTMLElement, inputEl: HTMLInputElement) {
@@ -24,8 +25,9 @@ export class Terminal {
       socials:      () => this.printSocials(),
       resume:       () => this.openResume(),
       whoami:       () => this.printWhoami(),
-      banner:       () => this.printBanner(),
       clear:        () => this.clear(),
+      agent:        () => this.runAgentEasterEgg(),  
+      analyze:      () => this.runAgentEasterEgg(),   
     };
     this.bindKeys();
     this.init();
@@ -33,6 +35,11 @@ export class Terminal {
 
   private bindKeys(): void {
     this.input.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (this.isProcessing) {
+        e.preventDefault();
+        return;
+      }
+
       if (e.key === 'Enter') {
         const val = this.input.value.trim();
         this.input.value = '';
@@ -50,12 +57,27 @@ export class Terminal {
         this.input.value = '';
       } else if (e.key === 'Tab') {
         e.preventDefault();
+        const val = this.input.value.trim().toLowerCase();
+        if (!val) return;
+        
         const cmds = Object.keys(this.COMMANDS);
-        const match = cmds.find(c => c.startsWith(this.input.value.toLowerCase()));
-        if (match) this.input.value = match;
+        const matches = cmds.filter(c => c.startsWith(val));
+
+        if (matches.length === 1) {
+          this.input.value = matches[0];
+        } else if (matches.length > 1) {
+          this.printCmd(val);
+          this.print(`  ${span(matches.join('   '), 'c-green')}\n`);
+        }
       }
     });
-    document.getElementById('terminal-screen')!.addEventListener('click', () => this.input.focus());
+    
+    document.getElementById('terminal-screen')!.addEventListener('click', () => {
+      const selection = window.getSelection();
+      if (!selection || selection.toString().length === 0) {
+        this.input.focus();
+      }
+    });
   }
 
   private init(): void {
@@ -107,7 +129,8 @@ export class Terminal {
       ['resume',       'open resume.pdf'],
       ['clear',        'clear the terminal'],
       ['whoami',       'quick intro'],
-      ['banner',       'show banner again'],
+      ['agent',        'run the hidden agent easter egg'],
+      ['analyze',      'run the hidden agent easter egg'],  
       ['help',         'show this menu'],
     ];
     this.print(`\n${span('available commands:', 'c-yellow')}\n`);
@@ -176,5 +199,36 @@ export class Terminal {
   private openResume(): void {
     this.print(`\n${span('opening resume...', 'c-green')}\n`);
     setTimeout(() => window.open(RESUME_URL, '_blank'), 400);
+  }
+
+  private async runAgentEasterEgg(): Promise<void> {
+    this.isProcessing = true;
+    this.input.disabled = true;
+
+    const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+    const logs = [
+      span('[Agent] Initializing independent tool-calling engine...', 'c-dim'),
+      span('[Agent] Mounting Docker containers... Done.', 'c-dim'),
+      span('[Agent] Scanning repository for full-stack capabilities...', 'c-dim'),
+      span('[Agent] Analyzing TCARP reinforcement learning metrics...', 'c-dim'),
+      span('[Agent] Validating hackathon wins... Confirmed.', 'c-dim')
+    ];
+
+    this.print('');
+    for (const log of logs) {
+      await sleep(500 + Math.random() * 500);
+      this.print(`  ${log}`);
+    }
+
+    await sleep(800);
+    this.print(`\n  ${span('[Agent Result] Analysis complete. Candidate Malhar Bonde exceeds parameters. Recommendation: IMMEDIATE HIRE.', 'c-green')}\n`);
+
+    await sleep(500);
+    this.print(`  ${span('[System] Releasing resources... returning control to guest.', 'c-dim')}\n`);
+
+    this.isProcessing = false;
+    this.input.disabled = false;
+    this.input.focus();
   }
 }
