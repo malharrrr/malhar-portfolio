@@ -3,13 +3,16 @@ import { PASSWORD, ASCII, SOCIAL, ABOUT, PROJECTS, SKILLS, EXPERIENCE, ACHIEVEME
 function span(text: string, cls: string): string {
   return `<span class="${cls}">${text}</span>`;
 }
+function hang(text: string, indent: number): string {
+  return `<div style="padding-left: ${indent}ch; text-indent: -${indent}ch;">${text}</div>`;
+}
 
 export class Terminal {
   private output: HTMLElement;
   private input: HTMLInputElement;
   private history: string[] = [];
   private histIdx: number = -1;
-  private isProcessing: boolean = false; 
+  private isProcessing: boolean = false;
   private COMMANDS: Record<string, () => void>;
 
   constructor(outputEl: HTMLElement, inputEl: HTMLInputElement) {
@@ -26,8 +29,8 @@ export class Terminal {
       resume:       () => this.openResume(),
       whoami:       () => this.printWhoami(),
       clear:        () => this.clear(),
-      agent:        () => this.runAgentEasterEgg(),  
-      analyze:      () => this.runAgentEasterEgg(),   
+      agent:        () => this.runAgentEasterEgg(),
+      analyze:      () => this.runAgentEasterEgg(),
     };
     this.bindKeys();
     this.init();
@@ -129,9 +132,9 @@ export class Terminal {
       ['resume',       'open resume.pdf'],
       ['clear',        'clear the terminal'],
       ['whoami',       'quick intro'],
-      ['agent',        'run the hidden agent easter egg'],
-      ['analyze',      'run the hidden agent easter egg'],  
-      ['help',         'show this menu'],
+      ['agent',        'run the hiddent agent'],
+      ['analyze',      'analyze malhars work'],
+      ['help',         'show this menu']
     ];
     this.print(`\n${span('available commands:', 'c-yellow')}\n`);
     cmds.forEach(([cmd, desc]) => {
@@ -151,9 +154,9 @@ export class Terminal {
     PROJECTS.forEach((p, i) => {
       const num = String(i + 1).padStart(2, '0');
       this.print(`  ${span('[' + num + ']', 'c-cyan')} ${span(p.name, 'c-green')}`);
-      this.print(`       ${span(p.tech, 'c-yellow')}`);
-      this.print(`       ${span(p.description, 'c-white')}`);
-      this.print(`       <a href="${p.link}" target="_blank">${p.link}</a>`);
+      this.print(hang(`       ${span(p.tech, 'c-yellow')}`, 7));
+      this.print(hang(`       ${span(p.description, 'c-white')}`, 7));
+      this.print(hang(`       <a href="${p.link}" target="_blank">${p.link}</a>`, 7));
       this.print('');
     });
   }
@@ -161,7 +164,7 @@ export class Terminal {
   private printSkills(): void {
     this.print(`\n${span('// skills', 'c-yellow')}\n`);
     SKILLS.forEach(s => {
-      this.print(`  ${span(s.category.padEnd(12), 'c-cyan')} ${span(s.items, 'c-white')}`);
+      this.print(hang(`  ${span(s.category.padEnd(12), 'c-cyan')} ${span(s.items, 'c-white')}`, 15));
     });
     this.print('');
   }
@@ -171,7 +174,7 @@ export class Terminal {
     EXPERIENCE.forEach(e => {
       this.print(`  ${span(e.role, 'c-green')} ${span('@', 'c-dim')} ${span(e.company, 'c-cyan')}`);
       this.print(`  ${span(e.period, 'c-dim')}\n`);
-      e.bullets.forEach(b => this.print(`  ${span('›', 'c-dim')} ${span(b, 'c-white')}`));
+      e.bullets.forEach(b => this.print(hang(`  ${span('›', 'c-dim')} ${span(b, 'c-white')}`, 4)));
       this.print('');
     });
   }
@@ -179,16 +182,16 @@ export class Terminal {
   private printAchievements(): void {
     this.print(`\n${span('// achievements', 'c-yellow')}\n`);
     ACHIEVEMENTS.forEach(a => {
-      this.print(`  ${span('★', 'c-magenta')} ${span(a, 'c-white')}`);
+      this.print(hang(`  ${span('★', 'c-magenta')} ${span(a, 'c-white')}`, 4));
     });
     this.print('');
   }
 
   private printSocials(): void {
     this.print(`\n${span('// socials', 'c-yellow')}\n`);
-    this.print(`  ${span('github'.padEnd(10), 'c-cyan')} <a href="https://github.com/${SOCIAL.github}" target="_blank">github.com/${SOCIAL.github}</a>`);
-    this.print(`  ${span('linkedin'.padEnd(10), 'c-cyan')} <a href="https://linkedin.com/in/${SOCIAL.linkedin}" target="_blank">linkedin.com/in/${SOCIAL.linkedin}</a>`);
-    this.print(`  ${span('email'.padEnd(10), 'c-cyan')} <a href="mailto:${SOCIAL.email}">${SOCIAL.email}</a>`);
+    this.print(hang(`  ${span('github'.padEnd(10), 'c-cyan')} <a href="https://github.com/${SOCIAL.github}" target="_blank">github.com/${SOCIAL.github}</a>`, 13));
+    this.print(hang(`  ${span('linkedin'.padEnd(10), 'c-cyan')} <a href="https://linkedin.com/in/${SOCIAL.linkedin}" target="_blank">linkedin.com/in/${SOCIAL.linkedin}</a>`, 13));
+    this.print(hang(`  ${span('email'.padEnd(10), 'c-cyan')} <a href="mailto:${SOCIAL.email}">${SOCIAL.email}</a>`, 13));
     this.print('');
   }
 
