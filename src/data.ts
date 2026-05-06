@@ -38,6 +38,12 @@ export const PROJECTS: Project[] = [
     description: 'Full-stack AI trip planner with intelligent itinerary generation through multi-turn conversations. Persistent trip history, NextAuth authentication, and travel-journal UI.',
     link: 'https://github.com/malharrrr/wanderly',
   },
+ {
+    name: 'OmniHub',
+    tech: '[TypeScript, JSON, Local Embeddings, MCP Server]',
+    description: 'A terminal-native memory hub and second brain designed for AI assistants (Claude/Gemini). It features a CLI for seamless data entry and semantic search via local embeddings, all without the overhead of a database.',
+    link: 'https://github.com/malharrrr/omnihub'
+  },
   {
     name: 'AI/ML Image Processing API',
     tech: 'FastAPI, Docker Compose, Ollama, HuggingFace, RMBG-2.0',
