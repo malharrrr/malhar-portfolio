@@ -3,27 +3,114 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Malhar Bonde | Portfolio</title>
-  <link rel="stylesheet" href="/src/style.css" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Malhar Bonde | Terminal Portfolio</title>
+  
+  <meta name="description" content="Malhar Sarang Bonde - Software Engineer & AI Builder. Portfolio featuring production-grade AI systems, Agentic RAG workflows, OmniHub, TCARP, and full-stack applications." />
+  <meta name="keywords" content="Malhar Bonde, AI Engineer, Software Engineer, LangGraph, RAG, Agentic AI, Next.js, Python, TypeScript, Machine Learning" />
+  <meta name="author" content="Malhar Sarang Bonde" />
+  
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="password-screen">
-    <pre id="ascii-banner" class="ascii-art"></pre>
-    <div class="pw-label">guest@malhar.dev:~$ enter password:</div>
-    <input id="pw-input" type="password" autocomplete="off" spellcheck="false" />
-    <div class="pw-hint" id="pw-hint">hint: what malhar loves to do</div>
-    <button id="guest-bypass" class="bypass-btn">[ enter as guest ]</button>
-  </div>
   
-  <div id="terminal-screen">
+  <script type="application/json" id="portfolio-data">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Malhar Sarang Bonde",
+    "jobTitle": "Software Engineer — Agentic AI & Full-Stack",
+    "url": "https://malhar.dev",
+    "email": "malharbonde12@gmail.com",
+    "sameAs": [
+      "https://github.com/malharrrr",
+      "https://linkedin.com/in/malhar-bonde"
+    ],
+    "knowsAbout": [
+      "Artificial Intelligence", "Large Language Models", "Agentic Workflows", 
+      "LangChain", "LangGraph", "RAG", "Vector Embeddings", 
+      "Python", "TypeScript", "React.js", "Next.js", "System Design"
+    ]
+  }
+  </script>
+
+  <div class="sr-only">
+    <header>
+      <h1>Malhar Sarang Bonde</h1>
+      <h2>Software Engineer & AI Builder</h2>
+      <p>Mumbai, India | B.Tech CSE (IoT, Cybersecurity & Blockchain), DJSCE Mumbai</p>
+    </header>
+    <main>
+      <section id="about">
+        <h3>About Me</h3>
+        <p>I build production-grade AI systems, LLM applications, and full-stack products. Published researcher at ICAIC 2025 with 3 hackathon wins and 20+ national-level shortlists.</p>
+      </section>
+      
+      <section id="experience">
+        <h3>Experience</h3>
+        <article>
+          <h4>Trainee Software Engineer at Neebal Technologies (Jun 2025 – Dec 2025)</h4>
+          <ul>
+            <li>Architected a stateful multi-agent system using LangGraph to automate complex business decision-making, reducing manual processing time by 40% and enhancing decision accuracy through Agentic RAG pipelines.</li>
+            <li>Built a curriculum-aware RAG pipeline for an EdTech Q&A module; implemented grade-level metadata filtering in Pinecone DB to ensure responses were pedagogically appropriate, reducing response time to under 2s.</li>
+            <li>Developed an Edge-AI Farmer’s Assistant application; integrated a custom-trained ML model for real-time crop disease identification achieving 96% model accuracy across 20+ disease categories.</li>
+            <li>Automated visa monitoring workflows by deploying a notification bot, reducing user check-frequency by 90%.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section id="projects">
+        <h3>Projects</h3>
+        <ul>
+          <li><strong>Wanderly:</strong> Full-stack AI trip planner with intelligent itinerary generation. (Next.js, MongoDB Atlas, Claude/Gemini API)</li>
+          <li><strong>OmniHub:</strong> A terminal-native memory hub and second brain designed for AI assistants. (TypeScript, Local Embeddings, MCP Server)</li>
+          <li><strong>Healosbench:</strong> An evaluation service and benchmarking pipeline for LLMs. (Python, Hono, Zod, Drizzle ORM)</li>
+          <li><strong>AI/ML Image Processing API:</strong> GPU-accelerated containerized pipeline integrating RMBG-2.0 and Moondream VLM. (FastAPI, Docker Compose, Ollama)</li>
+          <li><strong>TCARP:</strong> Causal RL trading system using Granger Causality, DAGs, GNNs and PPO. (Python, TensorFlow, PyTorch, Reinforcement Learning)</li>
+          <li><strong>De-Samaadhan:</strong> Decentralized complaint management with Aadhaar Anon integration for anonymous trustless authentication. (Node.js, Next.js, Solidity)</li>
+          <li><strong>Mirage.AI:</strong> Real-time deepfake detection using MTCNN and VGG-16 for GAN artifact classification. (TensorFlow, PyTorch, Flask)</li>
+          <li><strong>Legual:</strong> Legal document processing platform with AI-powered translation, summarization, and Chat with PDF. (Django, LangChain, OpenAI)</li>
+        </ul>
+      </section>
+
+      <section id="skills">
+        <h3>Skills</h3>
+        <p><strong>AI/ML:</strong> LLMs (Claude, Gemini, OpenAI), LangChain, LangGraph, MCP, Agentic Workflows, RAG, Vector Embeddings, KV Caching, Prompt Engineering, Model Evaluation, TensorFlow, PyTorch</p>
+        <p><strong>Languages & Backend:</strong> Python, JavaScript, TypeScript, Solidity, Bash, Node.js, FastAPI, Flask, Django, WebSockets</p>
+        <p><strong>Databases & DevOps:</strong> MongoDB, PostgreSQL, Firebase, Vector DBs (Pinecone, Weaviate, pgvector), Docker, Linux, Git, Redis, CI/CD</p>
+        <p><strong>Frontend & Systems:</strong> React.js, Next.js, Tailwind CSS, Blockchain, System Design</p>
+      </section>
+
+      <section id="achievements">
+        <h3>Achievements</h3>
+        <ul>
+          <li>Won 3 hackathons: Best Blockchain Project, 2nd Runner Up AI Hackathon</li>
+          <li>Published at ICAIC 2025 — causal reinforcement learning for algorithmic trading</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+
+  <div id="terminal-screen" class="visible">
     <div id="output"></div>
+
+    <div class="chips-row">
+      <button class="chip" data-cmd="about">[about]</button>
+      <button class="chip" data-cmd="projects">[projects]</button>
+      <button class="chip" data-cmd="skills">[skills]</button>
+      <button class="chip" data-cmd="experience">[experience]</button>
+      <button class="chip" data-cmd="achievements">[achievements]</button>
+      <button class="chip" data-cmd="socials">[socials]</button>
+      <button class="chip" data-cmd="resume">[resume]</button>
+      <button class="chip" data-cmd="clear">[clear]</button>
+    </div>
+
     <div class="input-row">
       <span class="prompt">guest@malhar.dev:~$&nbsp;</span>
       <input id="cmd-input" type="text" autocomplete="off" spellcheck="false" autofocus />
     </div>
   </div>
-  
-  <script type="module" src="/src/main.ts"></script>
+
+  <script src="main.js"></script>
 </body>
 </html>
