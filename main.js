@@ -12,6 +12,8 @@ const SOCIAL = {
   linkedin: 'malhar-bonde',
 };
 
+const RESUME_URL = 'https://malhar-portfolio-neon.vercel.app/resume.pdf';
+
 const ABOUT = `Name      Malhar Sarang Bonde
 Role      Software Engineer — Agentic AI & Full-Stack
 Location  Mumbai, India (open to relocation)
@@ -32,25 +34,25 @@ const PROJECTS = [
   {
     name: 'OmniHub',
     tech: 'TypeScript, JSON, Local Embeddings, MCP Server',
-    description: 'A terminal-native memory hub and second brain designed for AI assistants (Claude/Gemini). It features a CLI for seamless data entry and semantic search via local embeddings, all without the overhead of a database.',
-    link: 'https://www.npmjs.com/package/omnihub-cli'
+    description: 'A terminal-native memory hub and second brain designed for AI assistants (Claude/Gemini). CLI for seamless data entry and semantic search via local embeddings, zero database overhead. 300+ npm downloads.',
+    link: 'https://www.npmjs.com/package/omnihub-cli',
   },
   {
     name: 'Healosbench',
-    tech: 'Python, Model Evaluation, LLMs, Hono, Zod, Drizzle ORM',
-    description: 'An evaluation service and benchmarking pipeline for Large Language Models.',
-    link: 'https://github.com/malharrrr/test-eval'
+    tech: 'Python, Anthropic API, Hono, Zod, Drizzle ORM',
+    description: 'Full eval harness for structured clinical extraction using Anthropic tool use, retry-with-feedback loops, and prompt caching across 50 clinical transcripts and 3 prompt strategies. Per-field metrics (fuzzy match, set-based F1, numeric tolerance) with hallucination detection. Schema failure rate under 2%.',
+    link: 'https://github.com/malharrrr/test-eval',
   },
   {
     name: 'AI/ML Image Processing API',
     tech: 'FastAPI, Docker Compose, Ollama, HuggingFace, RMBG-2.0',
-    description: 'GPU-accelerated containerized pipeline integrating RMBG-2.0 for background removal and Moondream VLM for automated image captioning.',
+    description: 'GPU-accelerated containerized pipeline integrating RMBG-2.0 for background removal and Moondream VLM for automated image captioning. 60% reduction in end-to-end processing time via multi-container orchestration.',
     link: 'https://github.com/malharrrr/image-processing',
   },
   {
     name: 'TCARP',
     tech: 'Python, TensorFlow, PyTorch, Reinforcement Learning',
-    description: 'Published at ICAIC 2025 (MIT Jaipur). Causal RL trading system using Granger Causality, DAGs, GNNs and PPO. 2.45 Sharpe ratio — 40% above all baselines.',
+    description: 'Published at ICAIC 2025 (MIT Jaipur). Causal RL trading system using Granger Causality, DAGs, GNNs and PPO. 2.45 Sharpe ratio — 40% above all baselines, 2x higher risk-adjusted returns than MVO during high-volatility regimes.',
     link: 'https://github.com/malharrrr/TCARP',
   },
   {
@@ -62,7 +64,7 @@ const PROJECTS = [
   {
     name: 'Mirage.AI',
     tech: 'TensorFlow, PyTorch, Flask, MTCNN, VGG-16',
-    description: 'Won 2nd place at Aeravat AI Hackathon (IEEE Bombay Section). Real-time deepfake detection using MTCNN and VGG-16 for GAN artifact classification.',
+    description: 'Won 2nd Runner Up at Aeravat AI Hackathon (IEEE Bombay Section). Real-time deepfake detection using MTCNN and VGG-16 for GAN artifact classification.',
     link: 'https://github.com/mkdirteamname/Aeravat',
   },
   {
@@ -74,21 +76,21 @@ const PROJECTS = [
 ];
 
 const SKILLS = [
-  { 
-    category: 'AI/ML', 
-    items: 'LLMs (Claude, Gemini, OpenAI), LangChain, LangGraph, MCP, Agentic Workflows, RAG, Vector Embeddings, KV Caching, Prompt Engineering, Model Evaluation, TensorFlow, PyTorch' 
+  {
+    category: 'AI/ML',
+    items: 'LLMs (Claude, Gemini, OpenAI), LangChain, LangGraph, MCP, Agentic Workflows, RAG, Vector Embeddings, KV Caching, Prompt Engineering, Model Evaluation, TensorFlow, PyTorch',
   },
-  { 
-    category: 'Lang/Backend', 
-    items: 'Python, JavaScript, TypeScript, Solidity, Bash | Node.js, FastAPI, Flask, Django, WebSockets' 
+  {
+    category: 'Lang/Backend',
+    items: 'Python, JavaScript, TypeScript, Solidity, Bash | Node.js, FastAPI, Flask, Django, WebSockets',
   },
-  { 
-    category: 'Data/DevOps', 
-    items: 'MongoDB, PostgreSQL, Firebase, Vector DBs (Pinecone, Weaviate, pgvector) | Docker, Linux, Git, Redis, CI/CD' 
+  {
+    category: 'Data/DevOps',
+    items: 'MongoDB, PostgreSQL, Firebase, Vector DBs (Pinecone, Weaviate, pgvector) | Docker, Linux, Git, Redis, CI/CD',
   },
-  { 
-    category: 'Frontend/Sys', 
-    items: 'React.js, Next.js, Tailwind CSS | Blockchain, System Design' 
+  {
+    category: 'Frontend/Sys',
+    items: 'React.js, Next.js, Tailwind CSS | Blockchain, System Design',
   },
 ];
 
@@ -99,19 +101,19 @@ const EXPERIENCE = [
     period: 'Jun 2025 – Dec 2025 | Mumbai',
     bullets: [
       'Architected a stateful multi-agent system using LangGraph to automate complex business decision-making, reducing manual processing time by 40% and enhancing decision accuracy through Agentic RAG pipelines',
-      'Built a curriculum-aware RAG pipeline for an EdTech Q&A module (Agneez); implemented grade-level metadata filtering in Pinecone DB to ensure responses were pedagogically appropriate per student level (e.g. restricting quadratic solutions to factor method for Grade 6), reducing response time to under 2s',
-      'Developed an Edge-AI Farmer’s Assistant application; integrated a custom-trained ML model for real-time crop disease identification achieving 96% model accuracy across 20+ disease categories, providing low-latency weather and mandi updates on edge devices',
-      'Automated visa monitoring workflows by deploying a notification bot, reducing user check-frequency by 90% and improving successful slot acquisition rates through automated polling and real-time alerts'
+      `Built a curriculum-aware RAG pipeline for an EdTech Q&A module (Agneez); implemented grade-level metadata filtering in Pinecone DB to ensure responses were pedagogically appropriate per student level (e.g. restricting quadratic solutions to factor method for Grade 6), reducing response time to under 2s`,
+      `Developed an Edge-AI Farmer's Assistant application; integrated a custom-trained ML model for real-time crop disease identification achieving 96% model accuracy across 20+ disease categories, providing low-latency weather and mandi updates on edge devices`,
+      'Automated visa monitoring workflows by deploying a notification bot, reducing user check-frequency by 90% and improving successful slot acquisition rates through automated polling and real-time alerts',
     ],
   },
 ];
 
 const ACHIEVEMENTS = [
-  'Won 3 hackathons: Best Blockchain Project, 2nd Runner Up AI Hackathon',
-  'Published at ICAIC 2025 — causal reinforcement learning for algorithmic trading',
+  'Best Blockchain Project — CSI-SPIT Hackathon 2024',
+  '2nd Runner Up — Aeravat AI Hackathon, IEEE Bombay Section',
+  '20+ national-level hackathon shortlists (top 5% of 500+ participants)',
+  'Published at ICAIC 2025 (MIT Jaipur) — causal reinforcement learning for algorithmic trading',
 ];
-
-const RESUME_URL = 'resume.pdf';
 
 const span = (text, cls) => `<span class="${cls}">${text}</span>`;
 
@@ -122,7 +124,7 @@ class Terminal {
     this.history = [];
     this.histIdx = -1;
     this.isProcessing = false;
-    
+
     this.COMMANDS = {
       help:         () => this.printHelp(),
       about:        () => this.printAbout(),
@@ -131,12 +133,12 @@ class Terminal {
       experience:   () => this.printExperience(),
       achievements: () => this.printAchievements(),
       socials:      () => this.printSocials(),
-      resume:       () => this.openResume(),
       whoami:       () => this.printWhoami(),
+      resume:       () => this.openResume(),
       clear:        () => this.clear(),
       agent:        () => this.runAgentEasterEgg(),
     };
-    
+
     this.bindKeys();
     this.printBanner();
     this.printHelp();
@@ -169,15 +171,17 @@ class Terminal {
         if (matches.length === 1) {
           this.input.value = matches[0];
         } else if (matches.length > 1) {
+          this.print('');
           this.printCmd(val);
-          this.print(`  ${span(matches.join('   '), 'c-green')}\n`);
+          this.print(`  ${span(matches.join('   '), 'c-green')}`);
+          this.print('');
         }
       }
     });
 
     document.getElementById('terminal-screen').addEventListener('click', () => {
       const selection = window.getSelection();
-      if (!selection || selection.toString().length === 0) { this.input.focus(); }
+      if (!selection || selection.toString().length === 0) this.input.focus();
     });
   }
 
@@ -208,7 +212,7 @@ class Terminal {
   clear() { this.output.innerHTML = ''; }
 
   printBanner() {
-    this.print(`<pre class="ascii-art" style="font-size:10px;margin:8px 0;color:var(--green)">${ASCII}</pre>`);
+    this.print(`<pre class="ascii-art">${ASCII}</pre>`);
     this.print(`${span('  Malhar Sarang Bonde', 'c-cyan')} — Software Engineer & AI Builder`);
     this.print(`  ${span('Type ', 'c-dim')}${span('help', 'c-yellow')}${span(' or click the chips below to navigate.', 'c-dim')}\n`);
   }
@@ -221,8 +225,10 @@ class Terminal {
       ['experience',   'work history'],
       ['achievements', 'hackathons and publications'],
       ['socials',      'find me online'],
-      ['resume',       'open resume.pdf'],
+      ['whoami',       'one-line identity'],
+      ['resume',       'open resume PDF'],
       ['clear',        'clear the terminal'],
+      ['agent',        '???'],
     ];
     this.print(`\n${span('available commands:', 'c-yellow')}\n`);
     cmds.forEach(([cmd, desc]) => {
@@ -244,7 +250,7 @@ class Terminal {
       this.print(`  ${span('[' + num + ']', 'c-cyan')} ${span(p.name, 'c-green')}`);
       this.print(`<div class="indent-7">       ${span(p.tech, 'c-yellow')}</div>`);
       this.print(`<div class="indent-7">       ${span(p.description, 'c-white')}</div>`);
-      this.print(`<div class="indent-7">       <a href="${p.link}" target="_blank">${p.link}</a></div>`);
+      this.print(`<div class="indent-7">       <a href="${p.link}" target="_blank" rel="noopener noreferrer">${p.link}</a></div>`);
       this.print('');
     });
   }
@@ -277,19 +283,22 @@ class Terminal {
 
   printSocials() {
     this.print(`\n${span('// socials', 'c-yellow')}\n`);
-    this.print(`<div class="indent-13">  ${span('github'.padEnd(10), 'c-cyan')} <a href="https://github.com/${SOCIAL.github}" target="_blank">github.com/${SOCIAL.github}</a></div>`);
-    this.print(`<div class="indent-13">  ${span('linkedin'.padEnd(10), 'c-cyan')} <a href="https://linkedin.com/in/${SOCIAL.linkedin}" target="_blank">linkedin.com/in/${SOCIAL.linkedin}</a></div>`);
+    this.print(`<div class="indent-13">  ${span('github'.padEnd(10), 'c-cyan')} <a href="https://github.com/${SOCIAL.github}" target="_blank" rel="noopener noreferrer">github.com/${SOCIAL.github}</a></div>`);
+    this.print(`<div class="indent-13">  ${span('linkedin'.padEnd(10), 'c-cyan')} <a href="https://linkedin.com/in/${SOCIAL.linkedin}" target="_blank" rel="noopener noreferrer">linkedin.com/in/${SOCIAL.linkedin}</a></div>`);
     this.print(`<div class="indent-13">  ${span('email'.padEnd(10), 'c-cyan')} <a href="mailto:${SOCIAL.email}">${SOCIAL.email}</a></div>`);
     this.print('');
   }
 
   printWhoami() {
-    this.print(`\n${span('malhar bonde', 'c-cyan')} — ai engineer, builder, published researcher, 3x hackathon winner\n`);
+    this.print(`\n  ${span('malhar bonde', 'c-cyan')} — ai engineer, builder, published researcher, 3x hackathon winner\n`);
   }
 
   openResume() {
     this.print(`\n${span('opening resume...', 'c-green')}\n`);
-    setTimeout(() => window.open(RESUME_URL, '_blank'), 400);
+    const w = window.open(RESUME_URL, '_blank');
+    if (!w) {
+      this.print(`${span('blocked by browser. visit directly:', 'c-red')} <a href="${RESUME_URL}" target="_blank" rel="noopener noreferrer">${RESUME_URL}</a>\n`);
+    }
   }
 
   async runAgentEasterEgg() {
@@ -302,7 +311,7 @@ class Terminal {
       span('[Agent] Mounting Docker containers... Done.', 'c-dim'),
       span('[Agent] Scanning repository for full-stack capabilities...', 'c-dim'),
       span('[Agent] Analyzing TCARP reinforcement learning metrics...', 'c-dim'),
-      span('[Agent] Validating hackathon wins... Confirmed.', 'c-dim')
+      span('[Agent] Validating hackathon wins... Confirmed.', 'c-dim'),
     ];
 
     this.print('');
@@ -324,8 +333,9 @@ class Terminal {
 document.addEventListener('DOMContentLoaded', () => {
   const outputEl = document.getElementById('output');
   const inputEl = document.getElementById('cmd-input');
-  
+
   const terminal = new Terminal(outputEl, inputEl);
+
   document.querySelectorAll('.chip').forEach(chip => {
     chip.addEventListener('click', () => {
       const cmd = chip.getAttribute('data-cmd');
