@@ -1,4 +1,3 @@
-// Initialize Vercel Web Analytics
 import { inject } from '@vercel/analytics';
 
 inject({
@@ -42,14 +41,26 @@ const PROJECTS = [
   {
     name: 'OmniHub',
     tech: 'TypeScript, JSON, Local Embeddings, MCP Server',
-    description: 'A terminal-native memory hub and second brain designed for AI assistants (Claude/Gemini). CLI for seamless data entry and semantic search via local embeddings, zero database overhead. 300+ npm downloads.',
+    description: 'A terminal-native memory hub and second brain designed for AI assistants (Claude/Gemini). CLI for seamless data entry and semantic search via local embeddings, zero database overhead. 900+ npm downloads.',
     link: 'https://www.npmjs.com/package/omnihub-cli',
   },
   {
     name: 'Healosbench',
     tech: 'Python, Anthropic API, Hono, Zod, Drizzle ORM',
     description: 'Full eval harness for structured clinical extraction using Anthropic tool use, retry-with-feedback loops, and prompt caching across 50 clinical transcripts and 3 prompt strategies. Per-field metrics (fuzzy match, set-based F1, numeric tolerance) with hallucination detection. Schema failure rate under 2%.',
-    link: 'https://github.com/malharrrr/test-eval',
+    link: 'https://github.com/malharrrr/HealosBench',
+  },
+  {
+    name: 'DataStream',
+    tech: 'Go, gRPC, TimescaleDB, WebSockets',
+    description: 'A high-performance, concurrent financial data pipeline built in Go for sub-second market data ingestion. Integrates Binance WebSocket feeds and Yahoo Finance REST polling, using gRPC for low-latency communication and robust concurrency patterns (worker pools, buffered channels) for backpressure management.',
+    link: 'https://github.com/malharrrr/DataStream',
+  },
+  {
+    name: 'FeedPulse',
+    tech: 'TypeScript, Next.js, Gemini API, MongoDB, Node.js',
+    description: 'An interactive web application designed to help creators reverse-engineer and simulate how the xAI algorithm treats content reach. Allows users to input post data to see real-time reach estimates, ranking percentiles, and actionable feedback based on platform heuristics.',
+    link: 'https://feed-pulse-zeta.vercel.app/',
   },
   {
     name: 'AI/ML Image Processing API',
@@ -74,12 +85,6 @@ const PROJECTS = [
     tech: 'TensorFlow, PyTorch, Flask, MTCNN, VGG-16',
     description: 'Won 2nd Runner Up at Aeravat AI Hackathon (IEEE Bombay Section). Real-time deepfake detection using MTCNN and VGG-16 for GAN artifact classification.',
     link: 'https://github.com/mkdirteamname/Aeravat',
-  },
-  {
-    name: 'Legual',
-    tech: 'Django, MBart, Google Flan T5, LangChain, OpenAI',
-    description: 'Legal document processing platform with AI-powered translation, summarization, and Chat with PDF using instructor embeddings and vector search.',
-    link: 'https://github.com/malharrrr/Legual-datahack',
   },
 ];
 
@@ -124,6 +129,7 @@ const ACHIEVEMENTS = [
 ];
 
 const span = (text, cls) => `<span class="${cls}">${text}</span>`;
+const escapeHTML = (str) => str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag]));
 
 class Terminal {
   constructor(outputEl, inputEl) {
@@ -208,12 +214,15 @@ class Terminal {
     if (!raw) return;
     this.history.unshift(raw);
     this.histIdx = -1;
-    this.printCmd(raw);
+    
+    const safeRaw = escapeHTML(raw);
+    this.printCmd(safeRaw);
+    
     const cmd = raw.toLowerCase();
     if (this.COMMANDS[cmd]) {
       this.COMMANDS[cmd]();
     } else {
-      this.print(`\n${span('command not found:', 'c-red')} ${raw} — type ${span('help', 'c-yellow')} for available commands\n`);
+      this.print(`\n${span('command not found:', 'c-red')} ${safeRaw} — type ${span('help', 'c-yellow')} for available commands\n`);
     }
   }
 
