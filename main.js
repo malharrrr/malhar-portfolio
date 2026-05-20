@@ -19,7 +19,7 @@ const SOCIAL = {
   linkedin: 'malhar-bonde',
 };
 
-const RESUME_URL = 'https://malhar-portfolio-neon.vercel.app/resume.pdf';
+const RESUME_URL = 'resume.pdf';
 
 const ABOUT = `Name      Malhar Sarang Bonde
 Role      Software Engineer — Agentic AI & Full-Stack
