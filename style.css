@@ -6,7 +6,7 @@
   --yellow: #ffff00;
   --magenta: #ff00ff;
   --red: #ff4444;
-  --dim: #555;
+  --dim: #888;
   --white: #e0e0e0;
   --bg: #0d0d0d;
 }
@@ -129,6 +129,7 @@ html, body {
   font-size: 13px;
   caret-color: var(--green);
   font-size: max(13px, 16px);
+  aria-label: "Terminal command input";
 }
 
 @media (min-width: 601px) {
