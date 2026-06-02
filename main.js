@@ -45,6 +45,18 @@ const PROJECTS = [
     link: 'https://www.npmjs.com/package/omnihub-cli',
   },
   {
+    name: 'Bull AI Report',
+    tech: 'Python, Flask, Gemini, yfinance, ReportLab, Matplotlib',
+    description: 'An automated equity research tool generating comprehensive financial overviews. Ingests real-time market data to dynamically render typesetting and custom data visualizations into perfectly structured PDF reports.',
+    link: 'https://github.com/malharrrr/bull_ai_report',
+  },
+  {
+    name: 'ATS Resume Builder',
+    tech: 'Next.js 16, Bun, Gemini, LaTeX (pdflatex), Handlebars, Tailwind',
+    description: 'Full-stack resume tailoring platform designed for maximum ATS performance. Leverages structured LLM generation to rewrite professional impact points while employing server-side LaTeX compilation for pristine PDF export.',
+    link: 'https://github.com/malharrrr/resume-builder',
+  },
+  {
     name: 'Healosbench',
     tech: 'Python, Anthropic API, Hono, Zod, Drizzle ORM',
     description: 'Full eval harness for structured clinical extraction using Anthropic tool use, retry-with-feedback loops, and prompt caching across 50 clinical transcripts and 3 prompt strategies. Per-field metrics (fuzzy match, set-based F1, numeric tolerance) with hallucination detection. Schema failure rate under 2%.',
@@ -262,6 +274,7 @@ class Terminal {
 
   printProjects() {
     this.print(`\n${span('// projects', 'c-yellow')}\n`);
+    const startScrollPos = this.output.scrollHeight;
     PROJECTS.forEach((p, i) => {
       const num = String(i + 1).padStart(2, '0');
       this.print(`  ${span('[' + num + ']', 'c-cyan')} ${span(p.name, 'c-green')}`);
@@ -269,6 +282,7 @@ class Terminal {
       this.print(`<div class="indent-7">       ${span(p.description, 'c-white')}</div>`);
       this.print(`<div class="indent-7">       <a href="${p.link}" target="_blank" rel="noopener noreferrer">${p.link}</a></div>`);
       this.print('');
+      this.output.scrollTop = startScrollPos;
     });
   }
 
