@@ -48,13 +48,13 @@ const PROJECTS = [
     name: 'Bull AI Report',
     tech: 'Python, Flask, Gemini, yfinance, ReportLab, Matplotlib',
     description: 'An automated equity research tool generating comprehensive financial overviews. Ingests real-time market data to dynamically render typesetting and custom data visualizations into perfectly structured PDF reports.',
-    link: 'https://github.com/malharrrr/bull_ai_report',
+    link: 'https://bull-ai-report.onrender.com/',
   },
   {
     name: 'ATS Resume Builder',
     tech: 'Next.js 16, Bun, Gemini, LaTeX (pdflatex), Handlebars, Tailwind',
     description: 'Full-stack resume tailoring platform designed for maximum ATS performance. Leverages structured LLM generation to rewrite professional impact points while employing server-side LaTeX compilation for pristine PDF export.',
-    link: 'https://github.com/malharrrr/resume-builder',
+    link: 'https://resume-builder-kfcu.onrender.com/',
   },
   {
     name: 'Healosbench',
