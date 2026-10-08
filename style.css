@@ -149,7 +149,4 @@ html, body {
 a { color: var(--green); text-decoration: none; }
 a:hover { text-decoration: underline; color: var(--cyan); }
 
-.indent-4  { padding-left: 4ch;  text-indent: -4ch; }
-.indent-7  { padding-left: 7ch;  text-indent: -7ch; }
-.indent-13 { padding-left: 13ch; text-indent: -13ch; }
-.indent-15 { padding-left: 15ch; text-indent: -15ch; }
+.hang { padding-left: var(--hang); text-indent: calc(-1 * var(--hang)); }
