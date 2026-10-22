@@ -1,11 +1,11 @@
 export const profile = {
   name: 'Malhar Sarang Bonde',
   shortName: 'Malhar Bonde',
-  role: 'Software Engineer — Agentic AI & Full-Stack',
-  tagline: 'Software Engineer & AI Builder',
+  role: 'Tech Lead @ Valu Ventures',
+  tagline: 'Tech Lead @ Valu Ventures & AI Builder',
   location: 'Mumbai, India (open to relocation)',
   education: 'B.Tech CSE (IoT, Cybersecurity & Blockchain), DJSCE Mumbai',
-  status: 'Immediate joiner, open to full-time roles',
+  status: 'Currently working at Valu Ventures',
   summary: 'I build production-grade AI systems, LLM applications, and full-stack products. Published researcher at ICAIC 2025 with 3 hackathon wins and 20+ national-level shortlists.',
   whoami: 'ai engineer, builder, published researcher, 3x hackathon winner',
   url: 'https://malhar-portfolio-neon.vercel.app',
@@ -117,6 +117,14 @@ export const skills = [
 ];
 
 export const experience = [
+  {
+    role: 'Tech Lead',
+    company: 'Valu Ventures',
+    link: 'https://valu.ventures/',
+    period: 'Present',
+    current: true,
+    bullets: [],
+  },
   {
     role: 'Trainee Software Engineer',
     company: 'Neebal Technologies',

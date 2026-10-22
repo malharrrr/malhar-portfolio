@@ -85,8 +85,9 @@ export const skills = (skills) => {
 export const experience = (experience) => [
   heading('experience'),
   ...experience.flatMap((e) => [
-    `  ${text(e.role, 'c-green')} ${text('@', 'c-dim')} ${text(e.company, 'c-cyan')}`,
-    `  ${text(`${e.period} | ${e.location}`, 'c-dim')}\n`,
+    `  ${text(e.role, 'c-green')} ${text('@', 'c-dim')} ${e.link ? link(e.link, e.company) : text(e.company, 'c-cyan')}`,
+    `  ${text([e.period, e.location].filter(Boolean).join(' | '), 'c-dim')}`,
+    '',
     ...e.bullets.map((b) => hang('  › ', 'c-dim', text(b, 'c-white'))),
     '',
   ]),

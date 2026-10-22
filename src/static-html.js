@@ -4,13 +4,19 @@ import { escapeHTML, link, displayUrl } from './html.js';
 
 const e = escapeHTML;
 
-export function renderJsonLd({ profile, socials }) {
+export function renderJsonLd({ profile, socials, experience = [] }) {
   const email = socials.find((s) => s.url.startsWith('mailto:'));
+  const currentJob = experience.find((job) => job.current);
   const data = {
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: profile.name,
     jobTitle: profile.role,
+    ...(currentJob && { worksFor: {
+      '@type': 'Organization',
+      name: currentJob.company,
+      ...(currentJob.link && { url: currentJob.link }),
+    } }),
     url: profile.url,
     ...(email && { email: displayUrl(email.url) }),
     sameAs: socials.filter((s) => s.url.startsWith('http')).map((s) => s.url),
@@ -35,11 +41,10 @@ export function renderSrOnly({ profile, socials, projects, skills, experience, a
     <section id="experience">
       <h3>Experience</h3>
 ${experience.map((x) => `      <article>
-        <h4>${e(x.role)} at ${e(x.company)} (${e(x.period)}, ${e(x.location)})</h4>
-        <ul>
+        <h4>${e(x.role)} ${x.link ? `@ ${link(x.link, x.company)}` : `at ${e(x.company)}`} (${e([x.period, x.location].filter(Boolean).join(', '))})</h4>
+${x.bullets.length ? `        <ul>
 ${x.bullets.map((b) => `          <li>${e(b)}</li>`).join('\n')}
-        </ul>
-      </article>`).join('\n')}
+        </ul>\n` : ''}      </article>`).join('\n')}
     </section>
     <section id="projects">
       <h3>Projects</h3>
