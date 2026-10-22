@@ -75,7 +75,7 @@ ${socials.map((s) => `        <li>${e(s.name)}: ${link(s.url, displayUrl(s.url))
 export function renderChips(commands) {
   return commands
     .filter((c) => c.chip !== false)
-    .map((c) => `<button class="chip" data-cmd="${e(c.name)}">[${e(c.name)}]</button>`)
+    .map((c) => `<button class="chip" data-cmd="${e(c.name)}"><span class="chip-bracket" aria-hidden="true">[</span>${e(c.name)}<span class="chip-bracket" aria-hidden="true">]</span></button>`)
     .join('\n');
 }
 

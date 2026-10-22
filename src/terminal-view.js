@@ -10,9 +10,9 @@ const ASCII = `
 
 export const PROMPT = 'guest@malhar.dev:~$';
 
-const hang = (prefix, prefixCls, body) => {
+const hang = (prefix, prefixCls, body, className = '') => {
   const head = prefixCls ? text(prefix, prefixCls) : escapeHTML(prefix);
-  return `<div class="hang" style="--hang:${prefix.length}ch">${head}${body}</div>`;
+  return `<div class="hang ${className}" style="--hang:${prefix.length}ch"><span class="hang-prefix${prefix.trim() ? '' : ' hang-indent'}">${head}</span>${body}</div>`;
 };
 
 const heading = (title) => `\n${text(`// ${title}`, 'c-yellow')}\n`;
@@ -35,7 +35,7 @@ export const help = (commands) => {
   const width = widest(commands.map((c) => c.name)) + 2;
   return [
     `\n${text('available commands:', 'c-yellow')}\n`,
-    ...commands.map((c) => `  ${text(c.name.padEnd(width), 'c-green')}${text(`— ${c.description}`, 'c-dim')}`),
+    ...commands.map((c) => `<div class="help-row">  ${text(c.name.padEnd(width), 'c-green')}${text(`— ${c.description}`, 'c-dim')}</div>`),
     '',
   ];
 };
@@ -51,7 +51,7 @@ export const about = (profile) => {
   const width = widest(fields.map(([label]) => label)) + 1;
   return [
     heading('about'),
-    ...fields.map(([label, value]) => hang(`  ${label.padEnd(width)}`, null, escapeHTML(value))),
+    ...fields.map(([label, value]) => hang(`  ${label.padEnd(width)}`, null, escapeHTML(value), 'hang-field')),
     '  ',
     hang('  ', null, escapeHTML(profile.summary)),
     '',
@@ -77,7 +77,7 @@ export const skills = (skills) => {
   const width = widest(skills.map((s) => s.label));
   return [
     heading('skills'),
-    ...skills.map((s) => hang(`  ${s.label.padEnd(width)} `, 'c-cyan', text(s.items, 'c-white'))),
+    ...skills.map((s) => hang(`  ${s.label.padEnd(width)} `, 'c-cyan', text(s.items, 'c-white'), 'hang-field')),
     '',
   ];
 };
@@ -103,7 +103,7 @@ export const socials = (socials) => {
   const width = widest(socials.map((s) => s.name)) + 2;
   return [
     heading('socials'),
-    ...socials.map((s) => hang(`  ${s.name.padEnd(width)} `, 'c-cyan', link(s.url, displayUrl(s.url)))),
+    ...socials.map((s) => hang(`  ${s.name.padEnd(width)} `, 'c-cyan', link(s.url, displayUrl(s.url)), 'hang-field')),
     '',
   ];
 };

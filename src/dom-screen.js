@@ -1,13 +1,16 @@
 export function createDomScreen(output, input) {
+  let restoreInputFocus = false;
   return {
     print(lines, { scroll = 'end' } = {}) {
-      const start = output.scrollHeight;
+      let firstRow;
       for (const html of [].concat(lines)) {
         const row = document.createElement('div');
         row.innerHTML = html;
         output.appendChild(row);
+        firstRow ??= row;
       }
-      output.scrollTop = scroll === 'start' ? start : output.scrollHeight;
+      const readFromStart = scroll === 'start' || window.matchMedia('(max-width: 600px)').matches;
+      output.scrollTop = readFromStart && firstRow ? firstRow.offsetTop : output.scrollHeight;
     },
 
     clear() {
@@ -15,8 +18,9 @@ export function createDomScreen(output, input) {
     },
 
     setBusy(busy) {
+      if (busy) restoreInputFocus = document.activeElement === input;
       input.disabled = busy;
-      if (!busy) input.focus();
+      if (!busy && restoreInputFocus) input.focus({ preventScroll: true });
     },
   };
 }

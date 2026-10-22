@@ -19,14 +19,6 @@ html, body {
   font-size: 13px;
 }
 
-@media (max-width: 600px) {
-  html, body {
-    height: auto;
-    min-height: 100%;
-    overflow-y: auto;
-  }
-}
-
 .sr-only {
   position: absolute;
   width: 1px; height: 1px;
@@ -40,21 +32,16 @@ html, body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  height: 100dvh;
   padding: 16px;
   max-width: 900px;
   margin: 0 auto;
 }
 
-@media (max-width: 600px) {
-  #terminal-screen {
-    height: auto;
-    min-height: 100svh;
-    padding: 12px;
-  }
-}
-
 #output {
+  position: relative;
   flex: 1;
+  min-height: 0;
   overflow-y: auto;
   overflow-x: hidden;
   white-space: pre-wrap;
@@ -77,7 +64,7 @@ html, body {
 
 @media (max-width: 600px) {
   .ascii-art {
-    font-size: 5px;
+    font-size: clamp(7px, 2.1vw, 10px);
   }
 }
 
@@ -121,15 +108,14 @@ html, body {
 
 #cmd-input {
   flex: 1;
+  min-width: 0;
   background: transparent;
   border: none;
   outline: none;
   color: var(--green);
   font-family: inherit;
-  font-size: 13px;
   caret-color: var(--green);
-  font-size: max(13px, 16px);
-  aria-label: "Terminal command input";
+  font-size: 16px;
 }
 
 @media (min-width: 601px) {
@@ -150,3 +136,59 @@ a { color: var(--green); text-decoration: none; }
 a:hover { text-decoration: underline; color: var(--cyan); }
 
 .hang { padding-left: var(--hang); text-indent: calc(-1 * var(--hang)); }
+
+@media (max-width: 600px) {
+  html, body { font-size: 15px; }
+
+  #terminal-screen {
+    padding: 12px;
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+  }
+
+  #output { line-height: 1.75; }
+  #output > div:empty { min-height: 0.75em; }
+  .help-row {
+    display: grid;
+    grid-template-columns: 12ch minmax(0, 1fr);
+    white-space: normal;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 6px;
+  }
+
+  .hang {
+    padding-left: 0;
+    text-indent: 0;
+    white-space: normal;
+    margin-bottom: 10px;
+  }
+
+  .hang-indent { display: none; }
+  .hang-field { margin-bottom: 16px; }
+  .hang-field .hang-prefix {
+    display: block;
+    color: var(--cyan);
+    font-size: 12px;
+    margin-bottom: 2px;
+  }
+
+  .chips-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    padding: 10px 0 0;
+    margin-top: 8px;
+  }
+
+  .chip { min-height: 44px; padding: 6px 2px; font-size: 12px; }
+  .chip-bracket { display: none; }
+  .input-row { gap: 6px; padding-top: 6px; }
+  .prompt { font-size: 12px; }
+  #cmd-input { min-height: 44px; }
+  #output a { text-decoration: underline; text-underline-offset: 3px; }
+}
+
+@media (max-width: 600px) and (max-height: 450px) {
+  .chips-row { display: flex; flex-wrap: nowrap; overflow-x: auto; }
+  .chip { flex: 0 0 auto; padding-inline: 10px; }
+}

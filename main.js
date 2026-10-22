@@ -12,6 +12,7 @@ inject({
 
 document.addEventListener('DOMContentLoaded', () => {
   const input = document.getElementById('cmd-input');
+  const desktopKeyboard = window.matchMedia('(min-width: 601px) and (pointer: fine)');
   const screen = createDomScreen(document.getElementById('output'), input);
   const session = createSession({
     screen,
@@ -21,6 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   screen.print(banner(profile));
   session.execute('help', { echo: false });
+  document.getElementById('output').scrollTop = 0;
+  if (desktopKeyboard.matches) input.focus({ preventScroll: true });
 
   const keys = {
     Enter: () => {
@@ -45,12 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('.chips-row').addEventListener('click', (e) => {
     const chip = e.target.closest('.chip');
     if (!chip) return;
+    input.blur();
     session.execute(chip.dataset.cmd);
-    input.focus();
-  });
-
-  document.getElementById('terminal-screen').addEventListener('click', () => {
-    const selection = window.getSelection();
-    if (!selection || selection.toString().length === 0) input.focus();
+    if (desktopKeyboard.matches) input.focus({ preventScroll: true });
   });
 });
