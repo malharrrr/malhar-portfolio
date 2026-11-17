@@ -18,10 +18,18 @@ const hang = (prefix, prefixCls, body, className = '') => {
 const heading = (title) => `\n${text(`// ${title}`, 'c-yellow')}\n`;
 const widest = (strings) => Math.max(...strings.map((s) => s.length));
 
-export const banner = (profile) => [
+// The first screen: who this is, before any command has been run.
+export const banner = (profile, socials = []) => [
   `<pre class="ascii-art">${ASCII}</pre>`,
-  `${text(`  ${profile.name}`, 'c-cyan')} — ${escapeHTML(profile.tagline)}`,
-  `  ${text('Type ', 'c-dim')}${text('help', 'c-yellow')}${text(' or click the chips below to navigate.', 'c-dim')}\n`,
+  hang('  ', null, `${text(profile.name, 'c-green')} ${text('—', 'c-dim')} ${escapeHTML(profile.tagline)}`),
+  hang('  ', null, text(profile.location, 'c-dim')),
+  '',
+  hang('  ', null, escapeHTML(profile.summary)),
+  '',
+  hang('  ', null, socials.map((s) => link(s.url, s.name)).join(text('  ·  ', 'c-dim'))),
+  '',
+  hang('  ', null, `${text('Pick a section below, or type ', 'c-dim')}${text('help', 'c-green')}${text(' for every command.', 'c-dim')}`),
+  '',
 ];
 
 export const echo = (input) => `${text(PROMPT, 'c-dim')} ${text(input, 'c-white')}`;
@@ -54,7 +62,7 @@ export const about = (profile) => {
   const width = widest(fields.map(([label]) => label)) + 1;
   return [
     heading('about'),
-    ...fields.map(([label, value]) => hang(`  ${label.padEnd(width)}`, null, escapeHTML(value), 'hang-field')),
+    ...fields.map(([label, value]) => hang(`  ${label.padEnd(width)}`, 'c-dim', escapeHTML(value), 'hang-field')),
     '  ',
     hang('  ', null, escapeHTML(profile.summary)),
     '',
@@ -68,7 +76,7 @@ export const projects = (projects) => [
     const pad = ' '.repeat(`  ${num} `.length);
     return [
       `  ${text(num, 'c-cyan')} ${text(p.name, 'c-green')}`,
-      hang(pad, null, text(p.tech, 'c-yellow')),
+      hang(pad, null, text(p.tech, 'c-dim')),
       hang(pad, null, text(p.description, 'c-white')),
       hang(pad, null, link(p.link)),
       '',
@@ -80,7 +88,7 @@ export const skills = (skills) => {
   const width = widest(skills.map((s) => s.label));
   return [
     heading('skills'),
-    ...skills.map((s) => hang(`  ${s.label.padEnd(width)} `, 'c-cyan', text(s.items, 'c-white'), 'hang-field')),
+    ...skills.map((s) => hang(`  ${s.label.padEnd(width)} `, 'c-dim', text(s.items, 'c-white'), 'hang-field')),
     '',
   ];
 };
@@ -88,7 +96,7 @@ export const skills = (skills) => {
 export const experience = (experience) => [
   heading('experience'),
   ...experience.flatMap((e) => [
-    `  ${text(e.role, 'c-green')} ${text('@', 'c-dim')} ${e.link ? link(e.link, e.company) : text(e.company, 'c-cyan')}`,
+    `  ${text(e.role, 'c-green')} ${text('@', 'c-dim')} ${e.link ? link(e.link, e.company) : text(e.company, 'c-white')}`,
     `  ${text([e.period, e.location].filter(Boolean).join(' | '), 'c-dim')}`,
     '',
     ...e.bullets.map((b) => hang('  › ', 'c-dim', text(b, 'c-white'))),
@@ -98,7 +106,7 @@ export const experience = (experience) => [
 
 export const achievements = (achievements) => [
   heading('achievements'),
-  ...achievements.map((a) => hang('  ★ ', 'c-magenta', text(a, 'c-white'))),
+  ...achievements.map((a) => hang('  ★ ', 'c-yellow', text(a, 'c-white'))),
   '',
 ];
 
@@ -106,13 +114,13 @@ export const socials = (socials) => {
   const width = widest(socials.map((s) => s.name)) + 2;
   return [
     heading('socials'),
-    ...socials.map((s) => hang(`  ${s.name.padEnd(width)} `, 'c-cyan', link(s.url, displayUrl(s.url)), 'hang-field')),
+    ...socials.map((s) => hang(`  ${s.name.padEnd(width)} `, 'c-dim', link(s.url, displayUrl(s.url)), 'hang-field')),
     '',
   ];
 };
 
 export const whoami = (profile) =>
-  [`\n  ${text(profile.shortName.toLowerCase(), 'c-cyan')} — ${escapeHTML(profile.whoami)}\n`];
+  [`\n  ${text(profile.shortName.toLowerCase(), 'c-green')} — ${escapeHTML(profile.whoami)}\n`];
 
 export const resumeOpening = () => [`\n${text('opening resume...', 'c-green')}\n`];
 

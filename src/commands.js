@@ -31,7 +31,7 @@ export const commands = [
     run: ({ print }) => print(view.achievements(content.achievements)),
   },
   { name: 'socials', description: 'find me online', run: ({ print }) => print(view.socials(content.socials)) },
-  { name: 'whoami', description: 'one-line identity', run: ({ print }) => print(view.whoami(content.profile)) },
+  { name: 'whoami', description: 'one-line identity', chip: false, run: ({ print }) => print(view.whoami(content.profile)) },
   {
     name: 'resume',
     description: 'open resume PDF',
@@ -40,7 +40,7 @@ export const commands = [
       if (!openUrl(content.resumeUrl)) print(view.resumeBlocked(content.resumeUrl));
     },
   },
-  { name: 'clear', description: 'clear the terminal', run: ({ clear }) => clear() },
+  { name: 'clear', description: 'clear the terminal', chip: false, run: ({ clear }) => clear() },
   {
     name: 'agent',
     description: '???',

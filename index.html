@@ -25,9 +25,12 @@
   <meta name="twitter:description" content="Production-grade AI systems, agentic RAG workflows, OmniHub, TCARP and full-stack apps. Tech Lead at Valu Ventures." />
   <meta name="keywords" content="Malhar Bonde, AI Engineer, Software Engineer, LangGraph, RAG, Agentic AI, Next.js, Python, TypeScript, Machine Learning" />
   <meta name="author" content="Malhar Sarang Bonde" />
-  <meta name="theme-color" content="#0d0d0d" />
+  <meta name="theme-color" content="#0b0e0d" />
 
   <link rel="icon" type="image/svg+xml" href="new.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -36,6 +39,11 @@
   <!-- portfolio:sr-only -->
 
   <div id="terminal-screen">
+    <div class="titlebar" aria-hidden="true">
+      <span class="titlebar-dot"></span><span class="titlebar-dot"></span><span class="titlebar-dot"></span>
+      <span class="titlebar-title">guest@malhar.dev — portfolio</span>
+    </div>
+
     <div id="output"></div>
 
     <div class="chips-row">
@@ -45,7 +53,10 @@
     <div class="input-row">
       <span class="prompt">guest@malhar.dev:~$&nbsp;</span>
       <label for="cmd-input" class="sr-only">Terminal command input</label>
-      <input id="cmd-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="go" aria-label="Terminal command input" />
+      <div class="input-wrap">
+        <input id="cmd-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="go" aria-label="Terminal command input" />
+        <span class="cursor" aria-hidden="true"></span>
+      </div>
     </div>
   </div>
 

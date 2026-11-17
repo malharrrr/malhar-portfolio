@@ -1,5 +1,5 @@
 import { inject } from '@vercel/analytics';
-import { profile } from './src/content.js';
+import { profile, socials } from './src/content.js';
 import { commands } from './src/commands.js';
 import { createSession } from './src/session.js';
 import { createDomScreen } from './src/dom-screen.js';
@@ -20,8 +20,33 @@ document.addEventListener('DOMContentLoaded', () => {
     openUrl: (url) => Boolean(window.open(url, '_blank')),
   });
 
-  screen.print(banner(profile));
-  session.execute('help', { echo: false });
+  const chipsRow = document.querySelector('.chips-row');
+  const inputWrap = input.parentElement;
+
+  // Highlight the chip for the section last opened; `clear` resets it.
+  const markSection = (raw) => {
+    const name = raw.trim().toLowerCase();
+    const chip = chipsRow.querySelector(`.chip[data-cmd="${CSS.escape(name)}"]`);
+    if (!chip && name !== 'clear') return;
+    for (const other of chipsRow.querySelectorAll('.chip')) {
+      const active = other === chip;
+      other.classList.toggle('is-active', active);
+      if (active) other.setAttribute('aria-current', 'true');
+      else other.removeAttribute('aria-current');
+    }
+    chip?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  };
+
+  // The block cursor is drawn in CSS; it needs the caret column and scroll offset.
+  const syncCursor = () => {
+    inputWrap.style.setProperty('--caret', input.selectionStart ?? input.value.length);
+    inputWrap.style.setProperty('--scroll', `${input.scrollLeft}px`);
+  };
+  for (const type of ['input', 'keydown', 'keyup', 'click', 'focus', 'select']) {
+    input.addEventListener(type, () => requestAnimationFrame(syncCursor));
+  }
+
+  screen.print(banner(profile, socials));
   document.getElementById('output').scrollTop = 0;
   if (desktopKeyboard.matches) input.focus({ preventScroll: true });
 
@@ -29,7 +54,9 @@ document.addEventListener('DOMContentLoaded', () => {
     Enter: () => {
       const value = input.value;
       input.value = '';
+      if (session.busy) return;
       session.execute(value);
+      markSection(value);
     },
     ArrowUp: () => { input.value = session.previous(); },
     ArrowDown: () => { input.value = session.next(); },
@@ -45,11 +72,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!session.busy) action();
   });
 
-  document.querySelector('.chips-row').addEventListener('click', (e) => {
+  chipsRow.addEventListener('click', (e) => {
     const chip = e.target.closest('.chip');
-    if (!chip) return;
+    if (!chip || session.busy) return;
     input.blur();
     session.execute(chip.dataset.cmd);
+    markSection(chip.dataset.cmd);
     if (desktopKeyboard.matches) input.focus({ preventScroll: true });
   });
 });
