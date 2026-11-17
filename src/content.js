@@ -121,7 +121,7 @@ export const experience = [
     role: 'Tech Lead',
     company: 'Valu Ventures',
     link: 'https://valu.ventures/',
-    period: 'Present',
+    period: 'Sep 2026 – Present',
     current: true,
     bullets: [],
   },
