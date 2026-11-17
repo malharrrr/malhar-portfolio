@@ -26,12 +26,15 @@ export const banner = (profile) => [
 
 export const echo = (input) => `${text(PROMPT, 'c-dim')} ${text(input, 'c-white')}`;
 
-export const notFound = (input) =>
-  `\n${text('command not found:', 'c-red')} ${escapeHTML(input)} — type ${text('help', 'c-yellow')} for available commands\n`;
+export const notFound = (input, suggestion) =>
+  `\n${text('command not found:', 'c-red')} ${escapeHTML(input)} — ${suggestion
+    ? `did you mean ${text(suggestion, 'c-green')}?`
+    : `type ${text('help', 'c-green')} for available commands`}\n`;
 
 export const completions = (partial, matches) => ['', echo(partial), `  ${text(matches.join('   '), 'c-green')}`, ''];
 
-export const help = (commands) => {
+export const help = (allCommands) => {
+  const commands = allCommands.filter((c) => !c.hidden);
   const width = widest(commands.map((c) => c.name)) + 2;
   return [
     `\n${text('available commands:', 'c-yellow')}\n`,

@@ -45,6 +45,8 @@ export const commands = [
     name: 'agent',
     description: '???',
     chip: false,
+    // An easter egg: runnable and tab-completable, but left out of help.
+    hidden: true,
     async run({ print, sleep }) {
       print('');
       for (const line of AGENT_LOG) {
